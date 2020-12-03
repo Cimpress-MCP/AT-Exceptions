@@ -1,0 +1,67 @@
+{
+  "name": "@alphatango/exceptions",
+  "version": "0.0.1",
+  "description": "Custom error models",
+  "main": "lib/index.js",
+  "private": false,
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:docs": "typedoc",
+    "test": "jest",
+    "lint": "eslint --ext .ts src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cimpress-MCP/AT-Exceptions.git"
+  },
+  "author": "Alpha Tango Squad",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Cimpress-MCP/AT-Exceptions/issues"
+  },
+  "homepage": "https://github.com/Cimpress-MCP/AT-Exceptions#readme",
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "aws-sdk": "^2.0.0"
+  },
+  "devDependencies": {
+    "eslint": "7.5.0",
+    "eslint-config-cimpress-atsquad": "2.1.2",
+    "husky": "4.2.5",
+    "lint-staged": "10.2.11",
+    "prettier": "2.0.5",
+    "ts-jest": "26.1.4",
+    "ts-node": "8.10.2",
+    "typedoc": "^0.17.8",
+    "typescript": "3.9.7"
+  },
+  "eslintConfig": {
+    "extends": "cimpress-atsquad"
+  },
+  "prettier": "eslint-config-cimpress-atsquad/prettier",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write",
+      "eslint"
+    ],
+    "*.{js,json,yml,yaml,md}": [
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "collectCoverage": false
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}
