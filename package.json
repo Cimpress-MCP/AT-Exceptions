@@ -1,6 +1,6 @@
 {
   "name": "@alphatango/exceptions",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Custom error models",
   "main": "lib/index.js",
   "private": false,
@@ -12,6 +12,9 @@
     "build:docs": "typedoc",
     "test": "jest",
     "lint": "eslint --ext .ts src"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
