@@ -1,6 +1,6 @@
 {
   "name": "@alphatango/exceptions",
-  "version": "0.0.4",
+  "version": "2.0.0",
   "description": "Custom error models",
   "main": "lib/index.js",
   "private": false,
@@ -26,15 +26,14 @@
     "url": "https://github.com/Cimpress-MCP/AT-Exceptions/issues"
   },
   "homepage": "https://github.com/Cimpress-MCP/AT-Exceptions#readme",
-  "dependencies": {
-  },
-  "peerDependencies": {
-    "aws-sdk": "^2.0.0"
-  },
+  "dependencies": {},
+  "peerDependencies": {},
   "devDependencies": {
+    "@types/jest": "26.0.8",
     "eslint": "7.5.0",
     "eslint-config-cimpress-atsquad": "2.1.2",
     "husky": "4.2.5",
+    "jest": "26.2.1",
     "lint-staged": "10.2.11",
     "prettier": "2.0.5",
     "ts-jest": "26.1.4",
