@@ -1,31 +1,30 @@
+import { AxiosError } from 'axios';
 import { Exception } from './exception';
+import { isAxiosError } from '../util';
 
 export class ClientException extends Exception {
   private static readonly statusCodeMap: Record<number, number> = {
     400: 422,
-    401: 401,
-    403: 403,
     404: 422,
   };
 
-  constructor(serviceName: string, error?: unknown) {
-    super('Dependent service returned error', ClientException.convertStatusCode(error as object), {
+  constructor(serviceName: string, error?: AxiosError | unknown) {
+    super('Dependent service returned error', ClientException.convertStatusCode(error), {
       error,
       serviceName,
     });
   }
 
-  private static convertStatusCode(details?: object) {
+  private static convertStatusCode(details?: AxiosError | unknown) {
     let statusCode = 503;
-    let originalStatusCode;
-    if (details && 'statusCode' in details) {
-      originalStatusCode = parseInt((details as any).statusCode, 10);
-    } else if (details && 'status' in details) {
-      originalStatusCode = parseInt((details as any).status, 10);
+
+    if (isAxiosError(details)) {
+      const originalStatusCode = details.response?.status;
+      if (originalStatusCode && this.statusCodeMap[originalStatusCode]) {
+        statusCode = this.statusCodeMap[originalStatusCode];
+      }
     }
-    if (this.statusCodeMap[originalStatusCode]) {
-      statusCode = this.statusCodeMap[originalStatusCode];
-    }
+
     return statusCode;
   }
 }

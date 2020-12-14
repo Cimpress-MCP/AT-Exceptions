@@ -6,7 +6,7 @@ import { InternalException } from './exceptions/internalException';
 import { InvalidDataException } from './exceptions/invalidDataException';
 import { NotFoundException } from './exceptions/notFoundException';
 import { ValidationException } from './exceptions/validationException';
-import { serialize } from './util';
+import { isAxiosError, serialize } from './util';
 
 export {
   ValidationException,
@@ -18,4 +18,5 @@ export {
   ConflictException,
   ClientException,
   serialize,
+  isAxiosError,
 };
