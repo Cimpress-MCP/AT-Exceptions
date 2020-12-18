@@ -1,4 +1,4 @@
-import { serialize } from '../src/util';
+import { isAxiosError, serialize } from '../src/util';
 
 describe('Util', () => {
   const message = 'tests-error-message';
@@ -12,6 +12,20 @@ describe('Util', () => {
       };
       const serializedError = serialize(error);
       expect(serializedError).toEqual(expected);
+    });
+  });
+
+  describe('isAxiosError', () => {
+    test('works as type predicate', () => {
+      const testError: unknown = {
+        isAxiosError: true,
+        response: { status: 200 },
+      };
+
+      // without the if condition, this would be a typescript compile error
+      if (isAxiosError(testError)) {
+        expect(testError.response?.status).toEqual(200);
+      }
     });
   });
 });

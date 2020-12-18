@@ -1,6 +1,6 @@
 {
   "name": "@alphatango/exceptions",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Custom error models",
   "main": "lib/index.js",
   "private": false,
@@ -27,9 +27,12 @@
   },
   "homepage": "https://github.com/Cimpress-MCP/AT-Exceptions#readme",
   "dependencies": {},
-  "peerDependencies": {},
+  "peerDependencies": {
+    "axios": "~0.19.2"
+  },
   "devDependencies": {
     "@types/jest": "26.0.8",
+    "axios": "0.19.2",
     "eslint": "7.5.0",
     "eslint-config-cimpress-atsquad": "2.1.2",
     "husky": "4.2.5",
