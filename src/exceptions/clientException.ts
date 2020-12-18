@@ -3,8 +3,12 @@ import { Exception } from './exception';
 import { isAxiosError } from '../util';
 
 export class ClientException extends Exception {
+  public readonly originalStatusCode?: number;
+
   private static readonly statusCodeMap: Record<number, number> = {
     400: 422,
+    401: 401,
+    403: 403,
     404: 422,
   };
 
@@ -13,6 +17,8 @@ export class ClientException extends Exception {
       error,
       serviceName,
     });
+
+    this.originalStatusCode = isAxiosError(error) ? error.response?.status : undefined;
   }
 
   private static convertStatusCode(details?: AxiosError | unknown) {
