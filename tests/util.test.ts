@@ -1,4 +1,4 @@
-import { isAxiosError, serialize } from '../src/util';
+import { isAxiosError, serialize } from '../src';
 
 describe('Util', () => {
   const message = 'tests-error-message';
@@ -11,6 +11,27 @@ describe('Util', () => {
         stack: expect.any(String),
       };
       const serializedError = serialize(error);
+      expect(serializedError).toEqual(expected);
+    });
+
+    test('serializes Error string', () => {
+      const expected = 'test-error-string';
+      const serializedError = serialize(expected);
+      expect(serializedError).toEqual(expected);
+    });
+
+    test('serializes Error object', () => {
+      const expected = {
+        stringProp: 'string-prop-value',
+        objectProp: {
+          innerProp: 'inner-prop-value',
+          innerObjectProp: {
+            innerObjectPropKey: 'inner-object-prop-value',
+          },
+        },
+      };
+
+      const serializedError = serialize(expected);
       expect(serializedError).toEqual(expected);
     });
   });
@@ -26,6 +47,10 @@ describe('Util', () => {
       if (isAxiosError(testError)) {
         expect(testError.response?.status).toEqual(200);
       }
+    });
+
+    test('returns false when the error is undefined', () => {
+      expect(isAxiosError(undefined)).toBeFalsy();
     });
   });
 });
