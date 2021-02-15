@@ -20,6 +20,20 @@ describe('Util', () => {
       expect(serializedError).toEqual(expected);
     });
 
+    test('truncates token during serialization', () => {
+      const expected = {
+        headers: {
+          Authorization: 'Bearer eyJ111111.eyJ222222.<sig>',
+        },
+      };
+      const serializedError = serialize({
+        headers: {
+          Authorization: 'Bearer eyJ111111.eyJ222222.333333',
+        },
+      });
+      expect(serializedError).toEqual(expected);
+    });
+
     test('serializes Error object', () => {
       const expected = {
         stringProp: 'string-prop-value',
